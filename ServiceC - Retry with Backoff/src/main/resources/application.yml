@@ -1,0 +1,24 @@
+ljmu:
+    microserviceA:
+        url: http://localhost:8001/serviceA
+spring:
+    application:
+        name: microservice-C
+
+server:
+    port: 8003
+    servlet:
+        context-path: /serviceC
+
+resilience4j:
+    retry:
+        instances:
+            retryService:
+                max-attempts: 5
+                wait-duration: 10s
+                retry-exceptions:
+                    - java.lang.Exception
+                exponential-backoff:
+                    enabled: true
+                    multiplier: 1
+                    max-wait-duration: 10s

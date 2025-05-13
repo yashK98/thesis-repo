@@ -1,0 +1,26 @@
+ljmu:
+    microserviceA:
+        url: http://localhost:8001/serviceA
+spring:
+    application:
+        name: microservice-E
+
+server:
+    port: 8005
+    servlet:
+        context-path: /serviceE
+
+resilience4j:
+    circuitbreaker:
+        instances:
+            myCircuitBreaker:
+                sliding-window-type: COUNT_BASED
+                sliding-window-size: 10
+                failure-rate-threshold: 50
+                wait-duration-in-open-state: 10s
+                permitted-number-of-calls-in-half-open-state: 3
+                minimum-number-of-calls: 5
+                automatic-transition-from-open-to-half-open-enabled: true
+                record-exceptions:
+                    - java.io.IOException
+                    - java.util.concurrent.TimeoutException

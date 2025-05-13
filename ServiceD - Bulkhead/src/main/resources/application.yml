@@ -1,0 +1,18 @@
+ljmu:
+    microserviceA:
+        url: http://localhost:8001/serviceA
+spring:
+    application:
+        name: microservice-D
+
+server:
+    port: 8004
+    servlet:
+        context-path: /serviceD
+
+resilience4j:
+    bulkhead:
+        instances:
+            myBulkhead:
+                max-concurrent-calls: 5
+                max-wait-duration: 5s

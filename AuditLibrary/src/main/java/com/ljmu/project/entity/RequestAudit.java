@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "request_audit", schema = "thesis")
+@Table(name = "request_audit")
 public class RequestAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_audit_seq")
